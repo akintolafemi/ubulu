@@ -109,6 +109,14 @@ The database schema consists of 4 models -
 3. JWT token is generated at login
 4. A screener can not access the resource meant for an evaluator and vice versa; following strict role based access (RBA)
 
+## Authentication
+
+Two system users are seeded into the database
+
+1. screener: gracepen@ubulu.africa
+2. evaluator: johndoe@ubulu.africa
+   Password for both accounts is password
+
 ## Resources
 
 - [NestJS Documentation](https://docs.nestjs.com).

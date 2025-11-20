@@ -9,11 +9,6 @@ export const filterRequestObject = (
       deleted: false,
     });
   }
-  // const obj = useDeleted
-  //   ? {
-  //       deleted: false,
-  //     }
-  //   : {};
   try {
     for (const key in queryObj) {
       if (array.includes(String(key)) && queryObj[key] !== undefined) {

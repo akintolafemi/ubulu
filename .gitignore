@@ -1,7 +1,6 @@
 # compiled output
 /dist
 /node_modules
-/uploads
 
 # Logs
 logs
@@ -39,11 +38,3 @@ lerna-debug.log*
 .env
 .env.prod
 .bitbucket.env
-
-private.pem
-public.pem
-
-google.private.pem
-google.public.pem
-
-project-one-418720-firebase-adminsdk-fbsvc-121658e324.json
