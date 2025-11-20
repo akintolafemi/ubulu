@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model users {
+  id                    String        @id @default(auto()) @map("_id") @db.ObjectId
+  fullName              String        @db.String
+  email                 String        @db.String
+  password              String        @db.String
+  accountType           accountType   @default(screener)
+  createdAt             DateTime      @default(now()) @db.Timestamp
+  updatedAt             DateTime?     @db.Timestamp
+  deletedAt             DateTime?     @db.Timestamp
+  deleted               Boolean       @default(false) @db.Bool
+  screenedApplications  screenings[]
+  evaluatedApplications evaluations[]
+
+  @@index([id])
+  @@index([email])
+}
+
+model applications {
+  id          String                @id @default(auto()) @map("_id") @db.ObjectId
+  fullName    String                @db.String
+  email       String                @db.String
+  programName String                @db.String
+  responses   Json                  @db.Json
+  status      applicationStatusType @default(pending)
+  finalScore  Int                   @default(0) @db.Int
+  createdAt   DateTime              @default(now()) @db.Timestamp
+  updatedAt   DateTime?             @db.Timestamp
+  deletedAt   DateTime?             @db.Timestamp
+  deleted     Boolean               @default(false) @db.Bool
+  screenings  screenings[]
+  evaluations evaluations[]
+
+  @@index([id])
+  @@index([email])
+}
+
+model screenings {
+  id            String                @id @default(auto()) @map("_id") @db.ObjectId
+  applicationId String                @db.ObjectId
+  application   applications          @relation(fields: [applicationId], references: [id])
+  screenerId    String                @db.ObjectId
+  user          users                 @relation(fields: [screenerId], references: [id])
+  comment       String                @db.String
+  status        applicationStatusType @default(pending)
+  createdAt     DateTime              @default(now()) @db.Timestamp
+  updatedAt     DateTime?             @db.Timestamp
+  deletedAt     DateTime?             @db.Timestamp
+  deleted       Boolean               @default(false) @db.Bool
+
+  @@index([id])
+  @@index([applicationId])
+}
+
+model evaluations {
+  id                  String       @id @default(auto()) @map("_id") @db.ObjectId
+  applicationId       String       @db.ObjectId
+  application         applications @relation(fields: [applicationId], references: [id])
+  evaluatorId         String       @db.ObjectId
+  user                users        @relation(fields: [evaluatorId], references: [id])
+  problemClarity      Int          @default(0) @db.Int
+  solutionFeasibility Int          @default(0) @db.Int
+  marketPotential     Int          @default(0) @db.Int
+  teamCapacity        Int          @default(0) @db.Int
+  weightedScore       Int          @default(0) @db.Int
+  comment             String       @db.String
+  createdAt           DateTime     @default(now()) @db.Timestamp
+  updatedAt           DateTime?    @db.Timestamp
+  deletedAt           DateTime?    @db.Timestamp
+  deleted             Boolean      @default(false) @db.Bool
+
+  @@index([id])
+  @@index([applicationId])
+}
+
+enum accountType {
+  evaluator
+  screener
+}
+
+enum applicationStatusType {
+  pending
+  approved
+  rejected
+  needs_clarification
+}
