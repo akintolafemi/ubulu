@@ -13,7 +13,7 @@ datasource db {
 model users {
   id                    String        @id @default(auto()) @map("_id") @db.ObjectId
   fullName              String        @db.String
-  email                 String        @db.String
+  email                 String        @unique @db.String
   password              String        @db.String
   accountType           accountType   @default(screener)
   createdAt             DateTime      @default(now()) @db.Timestamp
@@ -24,7 +24,6 @@ model users {
   evaluatedApplications evaluations[]
 
   @@index([id])
-  @@index([email])
 }
 
 model applications {

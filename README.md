@@ -31,12 +31,13 @@
 3. [Evaluate application](/api/v1/applications/evaluate) [POST]
 4. [Get all applications](/api/v1/applications) [GET]
 5. [Get single applications](/api/v1/applications/:applicationId) [GET]
+6. [Authentication endpoint](/api/v1/auth/signin) [POST]
 
 ### Technologies Used
 
 - **ORM**: Prisma
 - **Database**: MongodB
-- **Authentication**: Bearer Token
+- **Authentication**: JWT Bearer Token
 
 ## Project setup
 
@@ -64,7 +65,7 @@ $ npm run start:dev
 
 ### Swagger API documentation is available at
 
-[Swagger UP](http://localhost:3334/documentation) [GET]
+[Swagger UI](http://localhost:3334/documentation) [GET]
 
 ## Compile and run the project
 
@@ -91,6 +92,22 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## Data Model Description
+
+The database schema consists of 4 models -
+
+1. users
+2. applications
+3. evaluations
+4. screenings
+
+## Asumptions
+
+1. I have assumed that applicants do not have to sign in to the platform
+2. Screeners and evaluators are system users with accounts (login information) and must login to carry out any action
+3. JWT token is generated at login
+4. A screener can not access the resource meant for an evaluator and vice versa; following strict role based access (RBA)
 
 ## Resources
 

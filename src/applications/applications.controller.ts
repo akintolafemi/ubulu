@@ -30,19 +30,6 @@ import { ManageRequestSource, Roles } from 'src/decorators/roles.decorators';
 import { accountType } from '@prisma/client';
 import { ManageApplicationGuard } from 'src/guards/application.guards';
 
-@ApiBearerAuth()
-@ApiBadRequestResponse({
-  description: 'Incorrect request body',
-})
-@ApiUnauthorizedResponse({
-  description: 'Invalid authorization token',
-})
-@ApiForbiddenResponse({
-  description: 'Access forbidden',
-})
-@ApiInternalServerErrorResponse({
-  description: 'Application error',
-})
 @ApiTags('Applications')
 @Controller('applications')
 export class ApplicationsController {

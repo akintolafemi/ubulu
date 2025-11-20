@@ -9,7 +9,7 @@ import { REQUEST } from '@nestjs/core';
 import { EventEmitter2 } from '@nestjs/event-emitter';
 import { applicationStatusType } from '@prisma/client';
 import { filterRequestObject } from '@utils/filter.request.utils';
-import { paginationRequest } from '@utils/pagination.request.utils';
+import { paginationRequest } from '../utils/pagination.request.utils';
 import { SCORING_WEIGHTS } from 'src/constants/app.constants';
 import { APPLICATIONS_FILTER_KEYS } from 'src/constants/application.constants';
 import { PrismaService } from 'src/prisma/prisma.service';
