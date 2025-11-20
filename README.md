@@ -24,15 +24,49 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[ubulut] Ubulu api consists of api endpoints to manage applications
 
-## Installation
+1. [Submit new application](/api/v1/applications) [POST]
+2. [Review application](/api/v1/applications/screen) [POST]
+3. [Evaluate application](/api/v1/applications/evaluate) [POST]
+4. [Get all applications](/api/v1/applications) [GET]
+5. [Get single applications](/api/v1/applications/:applicationId) [GET]
+
+### Technologies Used
+
+- **ORM**: Prisma
+- **Database**: MongodB
+- **Authentication**: Bearer Token
+
+## Project setup
+
+After pulling the repo, follow these steps to set up the project:
+
+1. From your terminal, change directory to the root directory of the project.
+2. Create `.env` file with variable names from `env.sample`.
+3. Install packages
 
 ```bash
 $ npm install
 ```
 
-## Running the app
+4. If connecting to a personal mondodb, you'd need to seed data into the database, run the command below
+
+```bash
+$ npx prisma db seed
+```
+
+5. Start the project
+
+```bash
+$ npm run start:dev
+```
+
+### Swagger API documentation is available at
+
+[Swagger UP](http://localhost:3334/documentation) [GET]
+
+## Compile and run the project
 
 ```bash
 # development
@@ -45,7 +79,7 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
+## Run tests
 
 ```bash
 # unit tests
@@ -58,17 +92,7 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Support
+## Resources
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
-# ubulu
+- [NestJS Documentation](https://docs.nestjs.com).
+- [Prisma Documentation](http://prisma.io).
